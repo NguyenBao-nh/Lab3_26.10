@@ -1,0 +1,52 @@
+﻿@model IEnumerable<Lab3_26._10.Models.Student>
+
+@{
+    ViewData["Title"] = "Danh sách sinh viên";
+}
+
+<div class="container mt-4">
+    <h2>Danh sách sinh viên</h2>
+
+    <p class="mt-3">
+        <a asp-action="Create" class="btn btn-success">Thêm sinh viên mới</a>
+    </p>
+
+    <table class="table table-bordered table-striped mt-3">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Họ tên</th>
+                <th>Email</th>
+                <th>Ngành học</th>
+                <th>Giới tính</th>
+                <th>Chính quy</th>
+                <th>Ngày sinh</th>
+                <th>Địa chỉ</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null && Model.Any())
+            {
+                foreach (var student in Model)
+                {
+                    <tr>
+                        <td>@student.Id</td>
+                        <td>@student.name</td>
+                        <td>@student.Email</td>
+                        <td>@student.Branch</td>
+                        <td>@student.Gender</td>
+                        <td>@(student.IsRegular ? "Có" : "Không")</td>
+                        <td>@student.DateOfBorth.ToString("dd/MM/yyyy")</td>
+                        <td>@student.Address</td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="8" class="text-center">Chưa có sinh viên nào trong danh sách.</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
